@@ -1,0 +1,9 @@
+schema_version: "2.0"
+title: "Neuro: StateMonitor"
+description: "Monitors membrane state traces over time."
+standard: other
+tags: [neuroscience, neuro, monitor, visualization]
+authors: ["Biosimulant Team"]
+bsim:
+  entrypoint: "src.state_monitor:StateMonitor"
+

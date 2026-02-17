@@ -1,0 +1,8 @@
+schema_version: "2.0"
+title: "Neuro: HHStateMonitor"
+description: "Detailed state monitor for Hodgkin-Huxley neurons. Produces 3-panel visualization: membrane potential, gating variables (m/h/n), and ionic currents (I_Na/I_K/I_L)."
+standard: other
+tags: [neuroscience, neuro, monitor, visualization, hodgkin-huxley]
+authors: ["Biosimulant Team"]
+bsim:
+  entrypoint: "src.hodgkin_huxley_monitor:HHStateMonitor"

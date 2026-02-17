@@ -1,0 +1,8 @@
+schema_version: "2.0"
+title: "Neuro: HodgkinHuxleyPopulation"
+description: "Hodgkin-Huxley conductance-based spiking neurons (1952 squid giant axon model). Features voltage-gated Na+, K+, and leak channels with gating variables m, h, n."
+standard: other
+tags: [neuroscience, neuro, neurons, hodgkin-huxley, conductance-based]
+authors: ["Biosimulant Team"]
+bsim:
+  entrypoint: "src.hodgkin_huxley:HodgkinHuxleyPopulation"
