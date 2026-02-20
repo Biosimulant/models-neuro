@@ -20,6 +20,14 @@ def _load_yaml(path: Path) -> dict[str, Any]:
     return data
 
 
+def _local_repo_aliases() -> set[str]:
+    repo_name = ROOT.name
+    return {
+        repo_name,
+        f"Biosimulant/{repo_name}",
+    }
+
+
 def _validate_model_manifest(path: Path) -> list[str]:
     errors: list[str] = []
     try:
@@ -62,7 +70,8 @@ def _validate_space_manifest(path: Path) -> list[str]:
     if not isinstance(models, list) or not models:
         return [f"{path}: missing non-empty 'models' list"]
 
-    refs: dict[str, int] = {}
+    local_aliases = _local_repo_aliases()
+
     for idx, entry in enumerate(models):
         if not isinstance(entry, dict):
             errors.append(f"{path}: models[{idx}] must be a mapping")
@@ -74,21 +83,17 @@ def _validate_space_manifest(path: Path) -> list[str]:
         if not isinstance(repo, str) or not repo.strip():
             errors.append(f"{path}: models[{idx}] missing repo/repo_full_name")
             continue
-        refs[repo] = refs.get(repo, 0) + 1
 
-    for idx, entry in enumerate(models):
-        if not isinstance(entry, dict):
-            continue
-        repo = entry.get("repo") or entry.get("repo_full_name")
-        if not isinstance(repo, str):
-            continue
         manifest_path = entry.get("manifest_path")
         if not isinstance(manifest_path, str) or not manifest_path.strip():
             errors.append(f"{path}: models[{idx}] missing required manifest_path")
             continue
 
+        # Only enforce local path existence for refs targeting this repo.
+        if repo not in local_aliases:
+            continue
+
         target = (ROOT / manifest_path).resolve()
-        # Ensure manifest_path is repo-relative and exists.
         if ROOT not in target.parents and target != ROOT:
             errors.append(f"{path}: models[{idx}].manifest_path must be repo-relative: {manifest_path}")
         elif not target.exists():

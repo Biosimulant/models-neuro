@@ -14,12 +14,16 @@ import yaml
 ROOT = Path(__file__).resolve().parents[1]
 sys.dont_write_bytecode = True
 
-# When running from the Biosimulant monorepo checkout (without installing biosim),
-# ensure `import biosim` resolves to the installable package at `biosim/src/biosim/`.
-REPO_ROOT = ROOT.parent
-BSIM_SRC = REPO_ROOT / "biosim" / "src"
-if BSIM_SRC.exists():
-    sys.path.insert(0, str(BSIM_SRC))
+# Resolve local biosim source when running in the Biosimulant monorepo.
+for p in [ROOT, *ROOT.parents]:
+    bsim_src = p / "bsim" / "src"
+    if bsim_src.exists():
+        sys.path.insert(0, str(bsim_src))
+        break
+    biosim_src = p / "biosim" / "src"
+    if biosim_src.exists():
+        sys.path.insert(0, str(biosim_src))
+        break
 
 
 def _load_yaml(path: Path) -> dict[str, Any]:
@@ -35,6 +39,13 @@ def _split_entrypoint(entrypoint: str) -> tuple[str, str]:
     else:
         module_name, attr = entrypoint.rsplit(".", 1)
     return module_name, attr
+
+
+def _clear_module_cache(module_name: str) -> None:
+    root = module_name.split(".", 1)[0]
+    to_delete = [k for k in sys.modules if k == root or k.startswith(f"{root}.")]
+    for k in to_delete:
+        sys.modules.pop(k, None)
 
 
 def main() -> int:
@@ -56,6 +67,8 @@ def main() -> int:
             model_root = manifest_path.parent
             sys.path.insert(0, str(model_root))
             try:
+                _clear_module_cache(module_name)
+                importlib.invalidate_caches()
                 module = importlib.import_module(module_name)
                 if not hasattr(module, attr):
                     errors.append(f"{manifest_path}: entrypoint attribute not found: {entrypoint}")
