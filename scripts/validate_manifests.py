@@ -31,10 +31,10 @@ def _validate_model_manifest(path: Path) -> list[str]:
     if not isinstance(standard, str) or not standard.strip():
         errors.append(f"{path}: missing required 'standard'")
 
-    bsim = manifest.get("bsim") if isinstance(manifest.get("bsim"), dict) else {}
-    entrypoint = bsim.get("entrypoint") or manifest.get("entrypoint")
+    biosim = manifest.get("biosim") if isinstance(manifest.get("biosim"), dict) else {}
+    entrypoint = biosim.get("entrypoint") or manifest.get("entrypoint")
     if not isinstance(entrypoint, str) or not entrypoint.strip():
-        errors.append(f"{path}: missing required 'bsim.entrypoint'")
+        errors.append(f"{path}: missing required 'biosim.entrypoint'")
 
     runtime = manifest.get("runtime") if isinstance(manifest.get("runtime"), dict) else {}
     deps = runtime.get("dependencies") if isinstance(runtime.get("dependencies"), dict) else {}

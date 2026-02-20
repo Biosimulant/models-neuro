@@ -9,8 +9,8 @@ import yaml
 
 def _find_bsim_src(start: Path) -> Path | None:
     for parent in [start, *start.parents]:
-        cand = parent / "bsim" / "src"
-        if (cand / "bsim").is_dir():
+        cand = parent / "biosim" / "src"
+        if (cand / "biosim").is_dir():
             return cand
     return None
 
@@ -29,7 +29,7 @@ def _load_module_class():
     _ensure_paths()
     manifest = Path(__file__).resolve().parents[1] / "model.yaml"
     data = yaml.safe_load(manifest.read_text(encoding="utf-8"))
-    entry = data["bsim"]["entrypoint"]
+    entry = data["biosim"]["entrypoint"]
     module_name, class_name = entry.split(":", 1)
     mod = importlib.import_module(module_name)
     cls = getattr(mod, class_name)

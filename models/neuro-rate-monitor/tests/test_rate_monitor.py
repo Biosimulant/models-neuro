@@ -1,8 +1,8 @@
 from __future__ import annotations
 
 
-def test_emits_rate_state(bsim):
-    from bsim.signals import BioSignal, SignalMetadata
+def test_emits_rate_state(biosim):
+    from biosim.signals import BioSignal, SignalMetadata
     from src.rate_monitor import RateMonitor
 
     mon = RateMonitor(window_size=0.05, n_neurons=10, min_dt=0.001)

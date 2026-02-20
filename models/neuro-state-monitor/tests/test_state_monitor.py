@@ -1,8 +1,8 @@
 from __future__ import annotations
 
 
-def test_emits_voltage_summary(bsim):
-    from bsim.signals import BioSignal, SignalMetadata
+def test_emits_voltage_summary(biosim):
+    from biosim.signals import BioSignal, SignalMetadata
     from src.state_monitor import StateMonitor
 
     mon = StateMonitor(max_points=10, min_dt=0.001)

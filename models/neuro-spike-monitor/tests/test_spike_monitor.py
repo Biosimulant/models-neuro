@@ -1,8 +1,8 @@
 from __future__ import annotations
 
 
-def test_emits_spike_summary(bsim):
-    from bsim.signals import BioSignal, SignalMetadata
+def test_emits_spike_summary(biosim):
+    from biosim.signals import BioSignal, SignalMetadata
     from src.spike_monitor import SpikeMonitor
 
     mon = SpikeMonitor(max_events=100, min_dt=0.001)

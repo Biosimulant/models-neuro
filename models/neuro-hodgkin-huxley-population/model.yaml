@@ -4,5 +4,5 @@ description: "Hodgkin-Huxley conductance-based spiking neurons (1952 squid giant
 standard: other
 tags: [neuroscience, neuro, neurons, hodgkin-huxley, conductance-based]
 authors: ["Biosimulant Team"]
-bsim:
+biosim:
   entrypoint: "src.hodgkin_huxley:HodgkinHuxleyPopulation"

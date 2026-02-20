@@ -4,6 +4,6 @@ description: "Computes summary metrics from spike streams."
 standard: other
 tags: [neuroscience, neuro, metrics]
 authors: ["Biosimulant Team"]
-bsim:
+biosim:
   entrypoint: "src.neuro_metrics:NeuroMetrics"
 

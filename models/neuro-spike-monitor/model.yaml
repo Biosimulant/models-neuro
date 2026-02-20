@@ -4,6 +4,6 @@ description: "Collects spikes and renders a raster plot visual."
 standard: other
 tags: [neuroscience, neuro, monitor, visualization]
 authors: ["Biosimulant Team"]
-bsim:
+biosim:
   entrypoint: "src.spike_monitor:SpikeMonitor"
 

@@ -1,8 +1,8 @@
 from __future__ import annotations
 
 
-def test_emits_metrics(bsim):
-    from bsim.signals import BioSignal, SignalMetadata
+def test_emits_metrics(biosim):
+    from biosim.signals import BioSignal, SignalMetadata
     from src.neuro_metrics import NeuroMetrics
 
     mod = NeuroMetrics(n_neurons=5, min_dt=0.001)

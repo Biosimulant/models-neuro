@@ -4,6 +4,6 @@ description: "Monitors membrane state traces over time."
 standard: other
 tags: [neuroscience, neuro, monitor, visualization]
 authors: ["Biosimulant Team"]
-bsim:
+biosim:
   entrypoint: "src.state_monitor:StateMonitor"
 

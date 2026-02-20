@@ -5,12 +5,12 @@ from __future__ import annotations
 DT = 0.0001
 
 
-def test_receives_state_and_produces_visuals(bsim):
+def test_receives_state_and_produces_visuals(biosim):
     """HHStateMonitor should accumulate data and produce 3-panel visualization."""
     from src.hodgkin_huxley import HodgkinHuxleyPopulation
     from src.hodgkin_huxley_monitor import HHStateMonitor
 
-    world = bsim.BioWorld()
+    world = biosim.BioWorld()
     neuron = HodgkinHuxleyPopulation(n=1, I_bias=10.0, min_dt=DT)
     monitor = HHStateMonitor(max_points=5000, neuron_index=0, min_dt=DT)
 

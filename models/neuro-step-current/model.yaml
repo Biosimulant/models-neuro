@@ -4,6 +4,6 @@ description: "Injects constant or scheduled current into a neuron population."
 standard: other
 tags: [neuroscience, neuro, input]
 authors: ["Biosimulant Team"]
-bsim:
+biosim:
   entrypoint: "src.step_current:StepCurrent"
 

@@ -5,10 +5,10 @@ from __future__ import annotations
 DT = 0.0001  # 0.1ms — matches HH default min_dt
 
 
-def _make_spike_catcher(bsim, spike_times, dt=DT):
+def _make_spike_catcher(biosim, spike_times, dt=DT):
     """Create a BioModule that records spike event times."""
 
-    class Catcher(bsim.BioModule):
+    class Catcher(biosim.BioModule):
         def __init__(self):
             self.min_dt = dt
 
@@ -28,14 +28,14 @@ def _make_spike_catcher(bsim, spike_times, dt=DT):
     return Catcher()
 
 
-def test_produces_action_potentials(bsim):
+def test_produces_action_potentials(biosim):
     """HH neuron at I=10 uA/cm^2 should fire repeatedly."""
     from src.hodgkin_huxley import HodgkinHuxleyPopulation
 
-    world = bsim.BioWorld()
+    world = biosim.BioWorld()
     neuron = HodgkinHuxleyPopulation(n=1, I_bias=10.0, min_dt=DT)
     spike_times = []
-    catcher = _make_spike_catcher(bsim, spike_times)
+    catcher = _make_spike_catcher(biosim, spike_times)
 
     world.add_biomodule("hh", neuron, priority=1)
     world.add_biomodule("catcher", catcher, priority=0)
@@ -45,14 +45,14 @@ def test_produces_action_potentials(bsim):
     assert len(spike_times) >= 5, f"Expected >=5 spikes, got {len(spike_times)}"
 
 
-def test_subthreshold_no_sustained_firing(bsim):
+def test_subthreshold_no_sustained_firing(biosim):
     """HH neuron at I=2 uA/cm^2 should not produce sustained firing."""
     from src.hodgkin_huxley import HodgkinHuxleyPopulation
 
-    world = bsim.BioWorld()
+    world = biosim.BioWorld()
     neuron = HodgkinHuxleyPopulation(n=1, I_bias=2.0, min_dt=DT)
     spike_times = []
-    catcher = _make_spike_catcher(bsim, spike_times)
+    catcher = _make_spike_catcher(biosim, spike_times)
 
     world.add_biomodule("hh", neuron, priority=1)
     world.add_biomodule("catcher", catcher, priority=0)
@@ -62,11 +62,11 @@ def test_subthreshold_no_sustained_firing(bsim):
     assert len(spike_times) <= 1, f"Expected <=1 spike, got {len(spike_times)}"
 
 
-def test_state_output_keys(bsim):
+def test_state_output_keys(biosim):
     """HH state output should include voltage, gating vars, and ionic currents."""
     from src.hodgkin_huxley import HodgkinHuxleyPopulation
 
-    world = bsim.BioWorld()
+    world = biosim.BioWorld()
     neuron = HodgkinHuxleyPopulation(n=1, min_dt=DT)
     world.add_biomodule("hh", neuron)
     world.run(duration=0.001, tick_dt=DT)
@@ -80,15 +80,15 @@ def test_state_output_keys(bsim):
     assert expected_keys == set(state.keys())
 
 
-def test_gating_variables_in_range(bsim):
+def test_gating_variables_in_range(biosim):
     """Gating variables m, h, n should always be in [0, 1]."""
     from src.hodgkin_huxley import HodgkinHuxleyPopulation
 
-    world = bsim.BioWorld()
+    world = biosim.BioWorld()
     neuron = HodgkinHuxleyPopulation(n=1, I_bias=15.0, min_dt=DT)
     gate_values = []
 
-    class Collector(bsim.BioModule):
+    class Collector(biosim.BioModule):
         def __init__(self):
             self.min_dt = DT
 
@@ -118,16 +118,16 @@ def test_gating_variables_in_range(bsim):
         assert 0.0 <= n <= 1.0, f"n out of range: {n}"
 
 
-def test_step_current_integration(bsim):
+def test_step_current_integration(biosim):
     """HH neuron driven by StepCurrent should fire during current injection."""
     from src.hodgkin_huxley import HodgkinHuxleyPopulation
     from src.step_current import StepCurrent
 
-    world = bsim.BioWorld()
+    world = biosim.BioWorld()
     stim = StepCurrent(I=0.0, schedule=[(0.01, 0.08, 10.0)], min_dt=DT)
     neuron = HodgkinHuxleyPopulation(n=1, min_dt=DT)
     spike_times = []
-    catcher = _make_spike_catcher(bsim, spike_times)
+    catcher = _make_spike_catcher(biosim, spike_times)
 
     world.add_biomodule("stim", stim, priority=2)
     world.add_biomodule("hh", neuron, priority=1)
@@ -141,16 +141,16 @@ def test_step_current_integration(bsim):
         assert t >= 0.01, f"Spike at {t} before current onset"
 
 
-def test_current_persists_across_ticks(bsim):
+def test_current_persists_across_ticks(biosim):
     """Current should persist even when StepCurrent has a slower min_dt."""
     from src.hodgkin_huxley import HodgkinHuxleyPopulation
     from src.step_current import StepCurrent
 
-    world = bsim.BioWorld()
+    world = biosim.BioWorld()
     stim = StepCurrent(I=10.0, min_dt=0.001)  # 10x slower than HH
     neuron = HodgkinHuxleyPopulation(n=1, min_dt=DT)
     spike_times = []
-    catcher = _make_spike_catcher(bsim, spike_times)
+    catcher = _make_spike_catcher(biosim, spike_times)
 
     world.add_biomodule("stim", stim, priority=2)
     world.add_biomodule("hh", neuron, priority=1)

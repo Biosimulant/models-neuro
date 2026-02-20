@@ -8,10 +8,10 @@ from typing import Any, Dict, List, Optional, Set, TYPE_CHECKING
 import base64
 
 if TYPE_CHECKING:  # pragma: no cover - typing only
-    from bsim.visuals import VisualSpec
+    from biosim.visuals import VisualSpec
 
-from bsim import BioModule
-from bsim.signals import BioSignal, SignalMetadata
+from biosim import BioModule
+from biosim.signals import BioSignal, SignalMetadata
 
 
 def _escape_svg_text(s: str) -> str:

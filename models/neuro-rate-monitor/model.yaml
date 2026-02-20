@@ -4,6 +4,6 @@ description: "Computes a sliding-window firing-rate estimate."
 standard: other
 tags: [neuroscience, neuro, monitor, visualization]
 authors: ["Biosimulant Team"]
-bsim:
+biosim:
   entrypoint: "src.rate_monitor:RateMonitor"
 

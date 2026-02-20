@@ -4,6 +4,6 @@ description: "Generates Poisson spike trains."
 standard: other
 tags: [neuroscience, neuro, input]
 authors: ["Biosimulant Team"]
-bsim:
+biosim:
   entrypoint: "src.poisson_input:PoissonInput"
 

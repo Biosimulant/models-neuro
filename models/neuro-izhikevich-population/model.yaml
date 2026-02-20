@@ -4,6 +4,6 @@ description: "Population of Izhikevich spiking neurons."
 standard: other
 tags: [neuroscience, neuro, neurons]
 authors: ["Biosimulant Team"]
-bsim:
+biosim:
   entrypoint: "src.izhikevich:IzhikevichPopulation"
 

@@ -2,14 +2,14 @@
 from __future__ import annotations
 
 
-def test_emits_spikes(bsim):
+def test_emits_spikes(biosim):
     from src.poisson_input import PoissonInput
 
-    world = bsim.BioWorld()
+    world = biosim.BioWorld()
     poisson = PoissonInput(n=10, rate_hz=100.0, seed=42, min_dt=0.001)
     captured = []
 
-    class SpikeCatcher(bsim.BioModule):
+    class SpikeCatcher(biosim.BioModule):
         def __init__(self):
             self.min_dt = 0.001
 
@@ -37,15 +37,15 @@ def test_emits_spikes(bsim):
     assert all(isinstance(v, list) for v in captured)
 
 
-def test_deterministic_seed(bsim):
+def test_deterministic_seed(biosim):
     from src.poisson_input import PoissonInput
 
     def run_once():
-        world = bsim.BioWorld()
+        world = biosim.BioWorld()
         poisson = PoissonInput(n=10, rate_hz=100.0, seed=123, min_dt=0.001)
         captured = []
 
-        class SpikeCatcher(bsim.BioModule):
+        class SpikeCatcher(biosim.BioModule):
             def __init__(self):
                 self.min_dt = 0.001
 

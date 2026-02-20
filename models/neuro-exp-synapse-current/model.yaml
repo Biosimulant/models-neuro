@@ -4,6 +4,6 @@ description: "Exponential synapse current model (spikes -> current)."
 standard: other
 tags: [neuroscience, neuro, synapse]
 authors: ["Biosimulant Team"]
-bsim:
+biosim:
   entrypoint: "src.exp_synapse:ExpSynapseCurrent"
 

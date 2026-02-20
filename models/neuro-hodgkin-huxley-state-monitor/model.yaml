@@ -4,5 +4,5 @@ description: "Detailed state monitor for Hodgkin-Huxley neurons. Produces 3-pane
 standard: other
 tags: [neuroscience, neuro, monitor, visualization, hodgkin-huxley]
 authors: ["Biosimulant Team"]
-bsim:
+biosim:
   entrypoint: "src.hodgkin_huxley_monitor:HHStateMonitor"

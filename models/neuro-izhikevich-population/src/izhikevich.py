@@ -8,10 +8,10 @@ from dataclasses import dataclass
 from typing import Any, Dict, List, Optional, Set, TYPE_CHECKING
 
 if TYPE_CHECKING:  # pragma: no cover - typing only
-    from bsim import BioWorld
+    from biosim import BioWorld
 
-from bsim import BioModule
-from bsim.signals import BioSignal, SignalMetadata
+from biosim import BioModule
+from biosim.signals import BioSignal, SignalMetadata
 
 
 @dataclass

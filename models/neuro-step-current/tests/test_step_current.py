@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 
-def test_emits_current(bsim):
+def test_emits_current(biosim):
     from src.step_current import StepCurrent
 
     mod = StepCurrent(I=5.0, min_dt=0.001)
