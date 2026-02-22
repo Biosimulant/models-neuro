@@ -1,6 +1,6 @@
 schema_version: "2.0"
 title: "Neuro: SpikeMetrics"
-description: "Computes summary metrics from spike streams."
+description: "Neuro Spike Metrics captures neuro spike metrics behavior in the context of neuroscience, neuro, metrics using a OTHER model definition. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags: [neuroscience, neuro, metrics]
 authors: ["Biosimulant Team"]

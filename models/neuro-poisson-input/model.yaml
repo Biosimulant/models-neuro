@@ -1,6 +1,6 @@
 schema_version: "2.0"
 title: "Neuro: PoissonInput"
-description: "Generates Poisson spike trains."
+description: "Neuro Poisson Input captures neuro poisson input behavior in the context of neuroscience, neuro, input using a OTHER model definition. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags: [neuroscience, neuro, input]
 authors: ["Biosimulant Team"]

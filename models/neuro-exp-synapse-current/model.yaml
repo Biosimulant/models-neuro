@@ -1,6 +1,6 @@
 schema_version: "2.0"
 title: "Neuro: ExpSynapseCurrent"
-description: "Exponential synapse current model (spikes -> current)."
+description: "Exponential synapse current model (spikes -> current). It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags: [neuroscience, neuro, synapse]
 authors: ["Biosimulant Team"]

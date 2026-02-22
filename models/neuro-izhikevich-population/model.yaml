@@ -1,6 +1,6 @@
 schema_version: "2.0"
 title: "Neuro: IzhikevichPopulation"
-description: "Population of Izhikevich spiking neurons."
+description: "Neuro Izhikevich Population captures neuro izhikevich population behavior in the context of neuroscience, neuro, neurons using a OTHER model definition. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags: [neuroscience, neuro, neurons]
 authors: ["Biosimulant Team"]

@@ -1,6 +1,6 @@
 schema_version: "2.0"
 title: "Neuro: RateMonitor"
-description: "Computes a sliding-window firing-rate estimate."
+description: "Neuro Rate Monitor captures neuro rate monitor behavior in the context of neuroscience, neuro, monitor using a OTHER model definition. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags: [neuroscience, neuro, monitor, visualization]
 authors: ["Biosimulant Team"]
