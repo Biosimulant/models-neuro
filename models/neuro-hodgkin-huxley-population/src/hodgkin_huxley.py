@@ -193,7 +193,7 @@ class HodgkinHuxleyPopulation(BioModule):
         if signal is None:
             return
         I = signal.value
-        # Current is a continuous signal — replace (not accumulate) and hold
+        # Current is a continuous signal - replace (not accumulate) and hold
         # until the next set_inputs call.  This ensures that when the HH model
         # advances faster than the current source (different min_dt), the
         # injected current persists between source emissions.
@@ -273,7 +273,7 @@ class HodgkinHuxleyPopulation(BioModule):
             self._h[i] = h
             self._n[i] = n_gate
 
-        # Note: _I_ext is NOT cleared — it holds the last received value
+        # Note: _I_ext is NOT cleared - it holds the last received value
         # until the next set_inputs call (continuous current semantics).
 
         # Compute ionic currents for state output (at final voltage)
