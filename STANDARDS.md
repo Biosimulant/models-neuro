@@ -71,7 +71,7 @@ biosim:
 | `schema_version` | Must be `"2.0"` |
 | `title` | Format: `"<Domain>: <PascalCaseName>"` |
 | `description` | Single sentence, starts with a verb or noun |
-| `standard` | Must be `"other"` (reserved for future standards) |
+| `standard` | Must be `"other"` for native Python biomodules, or `"onnx"` for ONNX-backed classifiers/regressors |
 | `tags` | List of lowercase strings; first tag must be the domain (`neuroscience`, `ecology`, `brain`, etc.) |
 | `authors` | List of strings |
 | `biosim.entrypoint` | Format `src.<snake_case_module>:<PascalCaseClass>` — must be importable and callable |
@@ -88,6 +88,29 @@ runtime:
 
 All dependency versions **must** be pinned with `==`. No `>=`, `~=`, or unpinned
 specifiers are allowed. This is enforced by CI (`scripts/validate_manifests.py`).
+
+**REQUIRED for `standard: onnx`**:
+
+```yaml
+onnx:
+  task: classification
+  model_file: artifacts/model.onnx
+  inputs:
+    - name: state_vector
+      dtype: float32
+      shape: [1, 4]
+  outputs:
+    - name: state_probabilities
+      dtype: float32
+      shape: [1, 3]
+  class_labels: [class_a, class_b, class_c]
+```
+
+Rules:
+- `onnx.model_file` must point to a checked-in artifact relative to the model directory.
+- `io.inputs` / `io.outputs` must match the BioModule-facing port names.
+- `onnx.inputs` / `onnx.outputs` describe the tensor contract presented to ONNX Runtime.
+- ONNX models must still expose a normal `biosim.BioModule` entrypoint; the ONNX artifact does not replace the module wrapper.
 
 ---
 

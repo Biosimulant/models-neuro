@@ -1,0 +1,58 @@
+schema_version: "2.0"
+title: "Neuro: Hybrid State Classifier"
+description: "Mechanistic Hodgkin-Huxley dynamics feed a compact ONNX classifier through a feature adapter to demonstrate a hybrid biosim workflow."
+models:
+  - repo: Biosimulant/models-neuro
+    alias: current_source
+    manifest_path: models/neuro-step-current/model.yaml
+    parameters:
+      I: 7.5
+  - repo: Biosimulant/models-neuro
+    alias: neuron
+    manifest_path: models/neuro-hodgkin-huxley-population/model.yaml
+    parameters:
+      n: 6
+      I_bias: 0.0
+      sample_indices: [0, 1, 2]
+  - repo: Biosimulant/models-neuro
+    alias: state_monitor
+    manifest_path: models/neuro-state-monitor/model.yaml
+    parameters:
+      max_points: 4000
+  - repo: Biosimulant/models-neuro
+    alias: state_adapter
+    manifest_path: models/neuro-state-to-vector-adapter/model.yaml
+    parameters: {}
+  - repo: Biosimulant/models-neuro
+    alias: state_classifier
+    manifest_path: models/neuro-onnx-state-classifier/model.yaml
+    parameters: {}
+runtime:
+  duration: 0.05
+  tick_dt: 0.001
+  initial_inputs: {}
+wiring:
+  - from: current_source.current
+    to:
+      - neuron.current
+  - from: neuron.state
+    to:
+      - state_monitor.state
+      - state_adapter.state
+  - from: state_adapter.state_vector
+    to:
+      - state_classifier.state_vector
+scientific_context:
+  question: "Can a small ONNX classifier summarize mechanistic neuron state into coarse behavioral regimes without replacing the mechanistic model itself?"
+  mode: "hybrid"
+  assumptions:
+    - "Hodgkin-Huxley remains the causal generator of membrane dynamics."
+    - "The adapter reduces a rich mechanistic state into a small fixed feature vector."
+    - "The ONNX model is a lightweight classifier layer, not a surrogate of the neuron dynamics."
+  expected_observables:
+    - "Voltage traces from the mechanistic monitor."
+    - "A stable low-dimensional feature vector derived from state."
+    - "Per-step ONNX class probabilities over quiescent, subthreshold, and spiking regimes."
+  limitations:
+    - "The classifier is a tiny reference model for platform validation, not a scientific benchmark."
+    - "Only sampled neuron-state statistics are passed to the ONNX model."

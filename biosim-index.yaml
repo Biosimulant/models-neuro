@@ -3,10 +3,13 @@ models:
 - models/neuro-hodgkin-huxley-population/model.yaml
 - models/neuro-hodgkin-huxley-state-monitor/model.yaml
 - models/neuro-izhikevich-population/model.yaml
+- models/neuro-onnx-state-classifier/model.yaml
 - models/neuro-poisson-input/model.yaml
 - models/neuro-rate-monitor/model.yaml
 - models/neuro-spike-metrics/model.yaml
 - models/neuro-spike-monitor/model.yaml
 - models/neuro-state-monitor/model.yaml
+- models/neuro-state-to-vector-adapter/model.yaml
 - models/neuro-step-current/model.yaml
-spaces: []
+spaces:
+- spaces/neuro-hybrid-state-classifier/space.yaml
