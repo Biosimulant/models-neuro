@@ -1,5 +1,5 @@
 schema_version: "2.0"
-title: "Neuro: StateToVectorAdapter"
+title: "State Vector Adapter"
 description: "Transforms mechanistic neuron state payloads into a fixed feature vector for hybrid downstream models."
 standard: other
 tags: [neuroscience, neuro, hybrid, adapter]

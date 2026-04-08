@@ -1,5 +1,5 @@
 schema_version: "2.0"
-title: "Neuro: StateMonitor"
+title: "State Monitor"
 description: "Neuro State Monitor represents neuro state monitor mechanisms. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags: [neuroscience, neuro, monitor, visualization]

@@ -1,5 +1,5 @@
 schema_version: "2.0"
-title: "Neuro: StepCurrent"
+title: "Step Current"
 description: "Injects constant or scheduled current into a neuron population. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags: [neuroscience, neuro, input]

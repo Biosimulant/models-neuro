@@ -1,5 +1,5 @@
 schema_version: "2.0"
-title: "Neuro: OnnxStateClassifier"
+title: "ONNX State Classifier"
 description: "Runs a compact ONNX classifier over mechanistic neuron state features and emits class probabilities."
 standard: onnx
 tags: [neuroscience, neuro, onnx, hybrid, classifier]
