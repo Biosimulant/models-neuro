@@ -1,0 +1,15 @@
+schema_version: "2.0"
+title: "State Vector Adapter"
+description: "Transforms mechanistic neuron state payloads into a fixed feature vector for hybrid downstream models."
+package: "Biosimulant/models-neuro:models/neuro-state-to-vector-adapter/model.yaml"
+version: "c4b2ade81a6f898c9a2a4e52d52e0fb9cfac4d9f"
+standard: other
+tags: [neuroscience, neuro, hybrid, adapter]
+authors: ["Biosimulant Team"]
+biosim:
+  entrypoint: "src.state_to_vector_adapter:StateToVectorAdapter"
+io:
+  inputs:
+    - state
+  outputs:
+    - state_vector

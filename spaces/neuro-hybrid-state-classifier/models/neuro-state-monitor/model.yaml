@@ -1,0 +1,10 @@
+schema_version: "2.0"
+title: "State Monitor"
+description: "Neuro State Monitor represents neuro state monitor mechanisms. It can be used to explore neural activity dynamics and compare response patterns across conditions."
+package: "Biosimulant/models-neuro:models/neuro-state-monitor/model.yaml"
+version: "c4b2ade81a6f898c9a2a4e52d52e0fb9cfac4d9f"
+standard: other
+tags: [neuroscience, neuro, monitor, visualization]
+authors: ["Biosimulant Team"]
+biosim:
+  entrypoint: "src.state_monitor:StateMonitor"

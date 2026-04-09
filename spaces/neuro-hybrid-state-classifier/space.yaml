@@ -1,31 +1,28 @@
 schema_version: "2.0"
 title: "Neuro: Hybrid State Classifier"
 description: "Mechanistic Hodgkin-Huxley dynamics feed a compact ONNX classifier through a feature adapter to demonstrate a hybrid biosim workflow."
+package: "Biosimulant/models-neuro/spaces/neuro-hybrid-state-classifier"
+version: "c4b2ade81a6f898c9a2a4e52d52e0fb9cfac4d9f-source-tree-1"
 models:
-  - repo: Biosimulant/models-neuro
+  - path: models/neuro-step-current
     alias: current_source
-    manifest_path: models/neuro-step-current/model.yaml
     parameters:
       I: 7.5
-  - repo: Biosimulant/models-neuro
+  - path: models/neuro-hodgkin-huxley-population
     alias: neuron
-    manifest_path: models/neuro-hodgkin-huxley-population/model.yaml
     parameters:
       n: 6
       I_bias: 0.0
       sample_indices: [0, 1, 2]
-  - repo: Biosimulant/models-neuro
+  - path: models/neuro-state-monitor
     alias: state_monitor
-    manifest_path: models/neuro-state-monitor/model.yaml
     parameters:
       max_points: 4000
-  - repo: Biosimulant/models-neuro
+  - path: models/neuro-state-to-vector-adapter
     alias: state_adapter
-    manifest_path: models/neuro-state-to-vector-adapter/model.yaml
     parameters: {}
-  - repo: Biosimulant/models-neuro
+  - path: models/neuro-onnx-state-classifier
     alias: state_classifier
-    manifest_path: models/neuro-onnx-state-classifier/model.yaml
     parameters: {}
 runtime:
   duration: 0.05
