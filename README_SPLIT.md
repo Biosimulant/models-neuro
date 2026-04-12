@@ -4,7 +4,7 @@ Generated from monolithic models repo split.
 
 - Domain: neuro
 - Model count: 10
-- Source: /Volumes/dem-ssd/imp/projects/Nitoons/Biosimulant/models
+- Source: monolithic models repository
 
 Layout:
 - models/<slug>/model.yaml

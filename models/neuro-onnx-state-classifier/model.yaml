@@ -1,6 +1,8 @@
 schema_version: "2.0"
 title: "ONNX State Classifier"
 description: "Runs a compact ONNX classifier over mechanistic neuron state features and emits class probabilities."
+package: "Biosimulant/models-neuro:models/neuro-onnx-state-classifier/model.yaml"
+version: "c4b2ade81a6f898c9a2a4e52d52e0fb9cfac4d9f"
 standard: onnx
 tags: [neuroscience, neuro, onnx, hybrid, classifier]
 authors: ["Biosimulant Team"]
